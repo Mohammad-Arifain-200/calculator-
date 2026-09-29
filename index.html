@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Calculator</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div class="calculator-container">
+        <!-- Header Controls -->
+        <div class="calc-header">
+            <div class="modes">
+                <button class="mode-btn" data-mode="standard">Standard</button>
+                <button class="mode-btn" data-mode="scientific">Scientific</button>
+                <button class="mode-btn active" data-mode="converter">Converter</button>
+            </div>
+            <div class="header-actions">
+                <button id="history-toggle-btn" class="icon-btn" title="History"><i class="fas fa-history"></i></button>
+                <button id="theme-toggle-btn" class="icon-btn" title="Toggle Theme"><i class="fas fa-sun"></i></button>
+            </div>
+        </div>
+
+        <!-- Main Display Panel (Shows only in Standard & Scientific modes) -->
+        <div id="calc-display" class="calc-display hidden">
+            <div id="expression" class="expression"></div>
+            <div id="result" class="result">0</div>
+        </div>
+
+        <!-- Views Container -->
+        <div class="calc-views">
+            <!-- Keypad View -->
+            <div id="keypad-view" class="view hidden">
+                <!-- Scientific Extra Keys -->
+                <div class="keypad scientific-keys hidden" id="scientific-pad">
+                    <button class="btn sci-btn" data-action="sin">sin</button>
+                    <button class="btn sci-btn" data-action="cos">cos</button>
+                    <button class="btn sci-btn" data-action="tan">tan</button>
+                    <button class="btn sci-btn" data-action="log">log</button>
+                    <button class="btn sci-btn" data-action="ln">ln</button>
+                    
+                    <button class="btn sci-btn" data-action="sqrt">√</button>
+                    <button class="btn sci-btn" data-value="^">^</button>
+                    <button class="btn sci-btn" data-value="π">π</button>
+                    <button class="btn sci-btn" data-value="e">e</button>
+                    <button class="btn sci-btn" data-action="fact">n!</button>
+                </div>
+
+                <!-- Standard Keypad -->
+                <div class="keypad standard-keys">
+                    <button class="btn func-btn" data-action="clear">AC</button>
+                    <button class="btn func-btn" data-action="delete"><i class="fas fa-backspace"></i></button>
+                    <button class="btn func-btn" data-action="percent">%</button>
+                    <button class="btn op-btn" data-value="÷">÷</button>
+
+                    <button class="btn num-btn" data-value="7">7</button>
+                    <button class="btn num-btn" data-value="8">8</button>
+                    <button class="btn num-btn" data-value="9">9</button>
+                    <button class="btn op-btn" data-value="×">×</button>
+
+                    <button class="btn num-btn" data-value="4">4</button>
+                    <button class="btn num-btn" data-value="5">5</button>
+                    <button class="btn num-btn" data-value="6">6</button>
+                    <button class="btn op-btn" data-value="-">-</button>
+
+                    <button class="btn num-btn" data-value="1">1</button>
+                    <button class="btn num-btn" data-value="2">2</button>
+                    <button class="btn num-btn" data-value="3">3</button>
+                    <button class="btn op-btn" data-value="+">+</button>
+
+                    <button class="btn num-btn" data-value="00">00</button>
+                    <button class="btn num-btn" data-value="0">0</button>
+                    <button class="btn num-btn" data-value=".">.</button>
+                    <button class="btn equals-btn" data-action="calculate">=</button>
+                </div>
+            </div>
+
+            <!-- Unit Converter View -->
+            <div id="converter-view" class="view">
+                <div class="converter-box">
+                    <div class="form-group">
+                        <label>ক্যাটাগরি:</label>
+                        <select id="conv-category" class="calc-select">
+                            <option value="length">Length (দৈর্ঘ্য)</option>
+                            <option value="weight">Weight (ওজন)</option>
+                            <option value="temp">Temperature (তাপমাত্রা)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>From:</label>
+                        <input type="number" id="conv-input-val" class="calc-input" value="1">
+                        <select id="conv-from-unit" class="calc-select"></select>
+                    </div>
+
+                    <div class="swap-icon" id="swap-units"><i class="fas fa-exchange-alt"></i></div>
+
+                    <div class="form-group">
+                        <label>To:</label>
+                        <input type="text" id="conv-output-val" class="calc-input" readonly>
+                        <select id="conv-to-unit" class="calc-select"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Drawer -->
+        <div class="history-panel" id="history-panel">
+            <div class="history-header">
+                <h3>Calculation History</h3>
+                <div class="history-header-actions">
+                    <button id="clear-history-btn" class="text-btn">Clear All</button>
+                    <button id="close-history-btn" class="icon-btn" title="Close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <ul id="history-list" class="history-list"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
